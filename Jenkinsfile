@@ -109,9 +109,9 @@ def getGitBranchName() {
 }    
     
 node('master'){
-    stage ('Checkout') {
-        checkout([$class: 'GitSCM', branches: [[name: '*/develop']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ziyanakthar/maven-examples.git']]])
-    }
+   // stage ('Checkout') {
+   //     checkout([$class: 'GitSCM', branches: [[name: '*/develop']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ziyanakthar/maven-examples.git']]])
+   // }
 
 
     stage ('Build') {
