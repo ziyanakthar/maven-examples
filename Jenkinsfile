@@ -25,7 +25,7 @@ def notifyBuild(String buildStatus = 'STARTED', String channel = '#jenkins-ci-in
   def commit = sh(returnStdout: true, script: 'git rev-parse HEAD')
   def author = sh(returnStdout: true, script: "git --no-pager show -s --format='%an'").trim()
   def branch1 = sh(returnStdout: true, script: 'git name-rev --name-only HEAD').tokenize('/')
-  def message = sh(returnStdout: true, script: 'git log -1 --pretty=%B').trim()
+  def message = sh(returnStdout: true, script: 'git log -3 --pretty=%B').trim()
 
   // Override default values based on build status
   if (buildStatus == 'SUCCESSFUL') {
@@ -111,7 +111,7 @@ def notifyBuild(String buildStatus = 'STARTED', String channel = '#jenkins-ci-in
     
 node('master'){
    stage ('Checkout') {
-        checkout([$class: 'GitSCM', extensions: [], userRemoteConfigs: [[url: 'https://github.com/ziyanakthar/maven-examples.git']]])
+        checkout([$class: 'GitSCM', branches: [[name: '*/develop'], [name: '*/master'], [name: '*/release']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ziyanakthar/maven-examples.git']]])
     }
     
     stage ('Build') {
