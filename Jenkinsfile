@@ -112,12 +112,7 @@ node('master'){
    // stage ('Checkout') {
    //     checkout([$class: 'GitSCM', branches: [[name: '*/develop']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ziyanakthar/maven-examples.git']]])
    // }
-    stage ("Initialization") {
-        steps {
-                cleanWs() // Clean house
-            }
-        }
-
+    
     stage ('Build') {
         try {
           //  notifyBuild()
