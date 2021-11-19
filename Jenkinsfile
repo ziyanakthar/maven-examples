@@ -45,7 +45,7 @@ def notifyBuild(String buildStatus = 'STARTED', String channel = '#jenkins-ci-in
     def testResultAction = currentBuild.rawBuild.getAction(AbstractTestResultAction.class)
     def summary = ""
 
-    if (testResultAction == null) {
+    if (testResultAction != null) {
         def total = testResultAction.totalCount
         def failed = testResultAction.failCount
         def skipped = testResultAction.skipCount
